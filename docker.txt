@@ -1,0 +1,62 @@
+docker ps //List containers
+docker-machine create -d virtualbox <nome-servidor> //Cria um navio para add nele os containers
+docker-machine ls //Lista maquinas
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+default   *        virtualbox   Running   tcp://192.168.99.100:2376           v1.11.1 
+
+docker-machine rm <nome_maquina> //remove
+docker run docker/whalesay cowsay boo //Cria um container dentro do navio acima
+docker ps -a //Lista os container
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+69876ca096a1        docker/whalesay     "cowsay boo"        4 minutes ago       Exited (0) 4 minutes ago                       pedantic_fermi
+
+docker images //Lista as imagens de conatiners 
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+docker/whalesay     latest              6b362a9f73eb        12 months ago       247 MB
+
+docker run docker/whalesay cowsay Anselmo Pfeifer
+ _________________ 
+< Anselmo Pfeifer >
+ ----------------- 
+    \
+     \
+      \     
+                    ##        .            
+              ## ## ##       ==            
+           ## ## ## ##      ===            
+       /""""""""""""""""___/ ===        
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~   
+       \______ o          __/            
+        \    \        __/             
+          \____\______/   
+
+
+docker-machine env default //Export variaveis de ambientes
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/anselmo/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell: 
+# eval $(docker-machine env default)
+
+Criar um Dockerfile e rodar este comando 
+	docker build -t docker-whale . 
+
+docker run docker-whale //
+
+docker pull anspfeifer/docker-pfeifer
+docker login --username=anspfeifer --email=anspfeifer@gmail.com
+	
+docker login --username=anspfeifer --email=anspfeifer@gmail.com
+	Warning: '--email' is deprecated, it will be removed soon. See usage.
+	Password: 
+	Login Succeeded
+docker run -d -P --name web nginx //new Container web com nginx
+docker-machine ip default
+	192.168.99.100
+docker port web
+	443/tcp -> 0.0.0.0:32768
+	80/tcp -> 0.0.0.0:32769
+
+docker run -d -P -v /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/4-Docker/Iniciando/Site:/usr/share/nginx/html --name mysite nginx
+
