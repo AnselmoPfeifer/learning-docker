@@ -17,34 +17,13 @@ _________________
 - docker version
 - docker --help
 
-- Comando de exemplos para docker images
-	- docker images // lista as images
-	- docker pull mysql // faz download da image docker para mysql
-	- docker rmi <image_name> // remove a imagem
-	- docker rmi $(docker images -qa) //remove todas as imagens
-    - Repositorio de images docker https://hub.docker.com
-
-- Comandos exemplos para docker containers
-	- docker ps // lista containers ativos
-	- docker ps -a // lista todos os containers
-	- docker rm <id_container> // remove o container pelo id ou nome
-	- docker rm $(docker ps -qa) -f // remove todos os container pelo id
-	- docker run -it ubuntu bash // cria um container e conecta via ssh
-	
-	- docker run docker/whalesay cowsay boo // cria um container
-	- docker run docker/whalesay cowsay Anselmo Pfeifer
-	- docker build -t docker-whale .
-	- docker run docker-whale 
+- Comando para images /docs/images.md
+- Comando para containers /docs/container.md
+- Comando para commit de containers /docs/commit.md
+- Exemplos de Dockerfile example/*
     
-- Criando um conjunto de Containers para MySQL e wordpress
-	- docker run --name database -e MYSQL_ROOT_PASSWORD=123 -d mysql 
-	    // criar um container com a image mysql, com o nome database e senha root do mysql em 123
-    - docker run --name blog --link database:mysql -e WORDPRESS_DB_PASSWORD=123 -p 80:80 -d wordpress
-        // cria um container com nome blog e faz um link como database recebendo a senha e fazendo proxy 
-        // entre as portas 80 local e 80 interna do container
-    - docker exec -it blog bash 
-        // abre um terminal ssh interativo no container com o nome blog
-        ps aux | grep www-data | wc -l // conta os processos rodando com usuario www-data 
+
+        
         
 docker pull anspfeifer/docker-pfeifer
 docker run -d -P --name web nginx //new Container web com nginx

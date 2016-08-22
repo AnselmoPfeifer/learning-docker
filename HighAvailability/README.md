@@ -1,15 +1,23 @@
-# ha-dockerjavaee
-High Availability with Docker and JavaEE
-
-git clone https://github.com/eldermoraes/ha-dockerjavaee.git
-docker build -t tomee-war --build-arg WAR_FILE=app_test.war .
-docker run --name host1 -p 8080:8080 tomee-war
-docker run --name host2 -p 8081:8080 tomee-war
-docker run --name host3 -p 8082:8080 tomee-war
+# High Availability with Docker and JavaEE
+                    ##        .
+              ## ## ##       ==
+           ## ## ## ##      ===
+       /""""""""""""""""___/ ===
+  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+       \______ o          __/
+        \    \        __/
+          \____\______/
+          
+- docker build -t tomee-war --build-arg WAR_FILE=app_test.war .
+- docker run --name host1 -p 8080:8080 tomee-war
+- docker run --name host2 -p 8081:8080 tomee-war
+- docker run --name host3 -p 8082:8080 tomee-war
 	
 docker run --name loadbalancer -p 80:80 --link host1:host1 --link host2:host2 --link host3:host3 --env-file ./env.list jasonwyatt/nginx-loadbalancer
-docker exec -i -t dbb2c87732a1 /bin/bash
 
+docker exec -i -t loadbalancer /bin/bash
+
+#  Exemplo conf nginx
 upstream tomcat {
     server host1:8080;
     server host2:8080;
@@ -25,7 +33,6 @@ server {
 
     root /usr/share/nginx/html;
 
-    # For service: TOMCAT
     location /app_test {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -35,3 +42,5 @@ server {
         proxy_buffering off;
     }
 }
+
+[REPO Exemplo](https://github.com/eldermoraes/ha-dockerjavaee.git)
