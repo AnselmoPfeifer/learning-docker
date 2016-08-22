@@ -23,8 +23,6 @@ _________________
 - Exemplos de Dockerfile example/*
     
 
-        
-        
 docker pull anspfeifer/docker-pfeifer
 docker run -d -P --name web nginx //new Container web com nginx
 docker port web
