@@ -1,25 +1,21 @@
-#Comando de exemplos para docker images
-
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/
+# Comando de exemplos para docker images
 
 - docker version
+
 - docker images --help
 
 - docker images 
     // lista as images
+    
 - docker pull ubuntu:14.04 
     //faz download da image docker do ubuntu-14.04
+    
 - docker pull mysql 
     // faz download da image docker para mysql
+    
 - docker rmi <image_name> 
     // remove a imagem
+    
 - docker rmi $(docker images -qa) 
     //remove todas as imagens
 
@@ -32,5 +28,6 @@
     
 - docker push anspfeifer/mysql
     // enviar image para docker hub
+    
 [Repositorio de images docker](https://hub.docker.com)
 
