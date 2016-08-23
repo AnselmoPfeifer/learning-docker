@@ -21,6 +21,10 @@ Objetivo:
     - docker run -d --name host2 --link localhost:mysql -p 8081:8080 tomcat:8.5
     - docker run -d --name host3 --link localhost:mysql -p 8082:8080 tomcat:8.5
     
+    docker run -d --name host1 -p 8081:8080 -p 45564:45564 tomcat:8.5
+    docker run -d --name host2 -p 8082:8080 -p 45564:45564 tomcat:8.5
+    docker run -d --name host3 -p 8083:8080 -p 45564:45564 tomcat:8.5
+    
     
     - docker exec -it host1 /bin/bash -c "export TERM=xterm; exec bash"
     - cd /usr/local/tomcat/

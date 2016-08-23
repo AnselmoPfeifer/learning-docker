@@ -1,4 +1,4 @@
-FROM asonwyatt/nginx-loadbalancer
+FROM jasonwyatt/nginx-loadbalancer
 
 MAINTAINER Anselmo Pfeifer: 0.1
 
@@ -30,5 +30,3 @@ ENV TOMCAT_REMOTE_PATH=/
 
 EXPOSE 80
 EXPOSE 443
-
-RUN service nginx start
