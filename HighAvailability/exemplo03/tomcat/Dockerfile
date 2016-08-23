@@ -7,12 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN rm -rf /usr/local/tomcat/webapps/*
 RUN rm -rf /usr/local/tomcat/work/*
 
-#RUN apt-get update
-#RUN apt-get -y install mysql-client
-
 ADD server.xml /usr/local/tomcat/conf/server.xml
 
-ARG WAR_FILE=ROOT.war
-ADD ${WAR_FILE} /usr/local/tomcat/webapps/${WAR_FILE}
+ADD cobranca.war /usr/local/tomcat/webapps/cobranca.war
+ADD ROOT.war/usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
