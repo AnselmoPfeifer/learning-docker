@@ -1,14 +1,5 @@
 # Container com MySQL-Server e um banco de dados
 
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/
-                 
 Objetivo:
     - container com mysql-server e um banco de dados
     
