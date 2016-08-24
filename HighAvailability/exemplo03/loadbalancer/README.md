@@ -1,13 +1,4 @@
 # Criando um proxy reverse com loadbalancer com nginx
-
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/
                  
 Objetivo:
     - Um container com loadbalancer (nginx)
