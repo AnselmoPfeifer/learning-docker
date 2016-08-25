@@ -20,31 +20,13 @@ docker build -t tomcat:8.5-jre8 .
 docker run -d --name host1 --link localhost:mysql -p 8081:8080 tomcat:8.5-jre8
 docker run -d --name host2 --link localhost:mysql -p 8082:8080 tomcat:8.5-jre8
 docker run -d --name host3 --link localhost:mysql -p 8083:8080 tomcat:8.5-jre8
-echo "Aguarde"
-echo "..... 5"
-sleep 1
-echo ".... 4"
-sleep 1
-echo "... 3"
-sleep 1
-echo ".. 2"
-sleep 1
-clear
 
 echo "#################################################"
 echo "Criando os 1 container de loadbalancer com nginx"
 cd ../loadbalancer/
 pwd
 docker run -d --name loadbalancer -p 80:80 -p 443:443 --link host1:host1 --link host2:host2 --link host3:host3 --env-file ./env.list jasonwyatt/nginx-loadbalancer
-echo "Aguarde"
-echo "..... 5"
-sleep 1
-echo ".... 4"
-sleep 1
-echo "... 3"
-sleep 1
-echo ".. 2"
-sleep 1
+
 
 pwd
 cd ../mysql/
@@ -57,6 +39,8 @@ docker exec -i localhost mysql -u root -pknkA9n7YnzvrDLE -h localhost -P 3306 co
 
 echo "###################################"
 echo "#                                 #"
-echo "#     ACESSE HTTP://LOCALHOST/    #"
+echo "#     ACESSE                      #"
+echo "#     HTTP://LOCALHOST/           #"
+echo "#     HTTP://LOCALHOST/COBRANCA   #"
 echo "#                                 #"
 echo "###################################"
