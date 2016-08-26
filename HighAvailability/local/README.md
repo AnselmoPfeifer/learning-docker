@@ -1,12 +1,27 @@
 # Para teste localhost
 
+O algoritmo padrão do Tomcat é o “all to all replication”.
+Esse algoritmo é um exemplo de replicação pessimista, pois 
+replica as sessões por todos os nós do cluster, de forma que 
+todos os servidores permaneçam iguais durante todo o tempo. 
+Esse algoritmo apresenta bom desempenho em pequenos clusters, 
+mas é ineficiente em clusters maiores, devido ao alto tráfego 
+de dados entre os nós ao replicarem os dados.
+
+ClusterSessionListener é responsável pelo recebimento das 
+mensagens replicadas de outros membros do cluster e 
+JvmRouteSessionIDBinderListener é responsável pelo recebimento 
+de alterações no SessionID.
+
 tomcat server01
 HTTP port = 8081
 Server Port = 8005
+AJP port="8009"
 
 tomcat server02
 HTTP port = 8082
 Server Port = 8006
+AJP port="8010"
 
 sudo nginx // start do nginx:
 sudo nginx -t
