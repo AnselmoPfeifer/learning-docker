@@ -1,34 +1,25 @@
-FROM scratch
-ADD ubuntu-precise-core-cloudimg-amd64-root.tar.gz /
+FROM mysql:5.6
+MAINTAINER Anselmo Pfeifer: 0.1
 
-# a few minor docker-specific tweaks
-# see https://github.com/docker/docker/blob/master/contrib/mkimage/debootstrap
-RUN set -xe \
-	\
-	&& echo '#!/bin/sh' > /usr/sbin/policy-rc.d \
-	&& echo 'exit 101' >> /usr/sbin/policy-rc.d \
-	&& chmod +x /usr/sbin/policy-rc.d \
-	\
-	&& dpkg-divert --local --rename --add /sbin/initctl \
-	&& cp -a /usr/sbin/policy-rc.d /sbin/initctl \
-	&& sed -i 's/^exit.*/exit 0/' /sbin/initctl \
-	\
-	&& echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup \
-	\
-	&& echo 'DPkg::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' > /etc/apt/apt.conf.d/docker-clean \
-	&& echo 'APT::Update::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' >> /etc/apt/apt.conf.d/docker-clean \
-	&& echo 'Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache "";' >> /etc/apt/apt.conf.d/docker-clean \
-	\
-	&& echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/docker-no-languages \
-	\
-	&& echo 'Acquire::GzipIndexes "true"; Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/docker-gzip-indexes
+RUN apt-get update
+RUN apt-get -y install htop
+RUN apt-get -y install zip
+RUN apt-get -y install apache2
+RUN apt-get -y install tomcat7
 
-# delete all the apt list files since they're big and get stale quickly
-RUN rm -rf /var/lib/apt/lists/*
-# this forces "apt-get update" in dependent images, which is also good
+ENV DEBIAN_FRONTEND noninteractive
 
-# enable the universe
-RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
+ENV MYSQL_ROOT_PASSWORD=knkA9n7YnzvrDLE
+ENV MYSQL_DATABASE=cobranca
+ENV MYSQL_USER=cobranca
+ENV MYSQL_PASSWORD=C41ZBxAmSLhRZliF
 
-# overwrite this with 'CMD []' in a dependent Dockerfile
-CMD ["/bin/bash"]
+RUN chmod -R 755 /var/www/
+RUN chown -R www-data:www-data /var/www/
+
+ADD app/ /var/www/html
+COPY app/ /var/www/html/app
+
+EXPOSE 80
+EXPOSE 3306
+EXPOSE 8080
