@@ -46,16 +46,19 @@
         80/tcp -> 0.0.0.0:32769
  
  docker exec -it exemplo02 bash 
- apt-get update && apt-get -y install apache2       
-        
-    #Criando um conjunto de Containers para MySQL e wordpress
-	- docker run --name database -e MYSQL_ROOT_PASSWORD=123 -d mysql 
+ apt-get update && apt-get -y install apache2    
+    
+- docker cp cluster/ROOT/ host1:/usr/local/tomcat/webapps/ROOT
+    // copianedo arquivos para dentro do container
+       
+#Criando um conjunto de Containers para MySQL e wordpress
+- docker run --name database -e MYSQL_ROOT_PASSWORD=123 -d mysql 
 	    // criar um container com a image mysql, com o nome database e senha root do mysql em 123
 	    
-    - docker run --name blog --link database:mysql -e WORDPRESS_DB_PASSWORD=123 -p 80:80 -d wordpress
+- docker run --name blog --link database:mysql -e WORDPRESS_DB_PASSWORD=123 -p 80:80 -d wordpress
         // cria um container com nome blog e faz um link como database recebendo a senha e fazendo proxy 
         // entre as portas 80 local e 80 interna do container
         
-    - docker exec -it blog bash 
+- docker exec -it blog bash 
         // abre um terminal ssh interativo no container com o nome blog
         ps aux | grep www-data | wc -l // conta os processos rodando com usuario www-data 

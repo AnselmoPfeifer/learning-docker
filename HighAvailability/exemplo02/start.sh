@@ -18,14 +18,7 @@ pwd
 
 docker run -d --name loadbalancer -p 80:80 -p 443:443 --link host1:host1 --link host2:host2 --link host3:host3 --env-file ./env.list jasonwyatt/nginx-loadbalancer
 echo "Aguarde"
-echo "..... 5"
-sleep 1
-echo ".... 4"
-sleep 1
-echo "... 3"
-sleep 1
-echo ".. 2"
-sleep 1
+
 echo "###################################"
 echo "#                                 #"
 echo "#     ACESSE HTTP://LOCALHOST/    #"
