@@ -5,8 +5,8 @@ varnish:
     - 80:80
   links:
     - loadbalancer:loadbalancer
-  environment:
-    VCL_CONFIG: cluster/default.vcl
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/default.vcl:/etc/varnish/default.vcl
 
 loadbalancer:
   image: nginx
@@ -31,7 +31,7 @@ tomcatOne:
   volumes:
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/ROOT:/usr/local/tomcat/webapps/ROOT
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
 
 tomcatTwo:
   image: tomcat
@@ -41,7 +41,7 @@ tomcatTwo:
   volumes:
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/ROOT:/usr/local/tomcat/webapps/ROOT
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
 
 tomcatThree:
   image: tomcat
@@ -51,7 +51,7 @@ tomcatThree:
   volumes:
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
     - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/ROOT:/usr/local/tomcat/webapps/ROOT
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/exemplo05-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
 
 #
 #mysql:

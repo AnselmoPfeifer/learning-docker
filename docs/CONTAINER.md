@@ -21,6 +21,8 @@
     // cria um container em modo interativo como root, para sair sem matar o container "ctrl + pq"
 
 -  docker run -d --name host1 -p 8080:8080 tomcat
+
+
     //cria um container com noe host1 liberando a porta 8080 usando a image tomcat
 
 - docker run --rm -it ubuntu bash 
@@ -52,6 +54,7 @@
     // copianedo arquivos para dentro do container
        
 #Criando um conjunto de Containers para MySQL e wordpress
+
 - docker run --name database -e MYSQL_ROOT_PASSWORD=123 -d mysql 
 	    // criar um container com a image mysql, com o nome database e senha root do mysql em 123
 	    

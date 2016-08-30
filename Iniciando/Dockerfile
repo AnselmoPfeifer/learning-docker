@@ -1,5 +1,24 @@
-FROM docker/whalesay:latest
+FROM ubuntu:16.10
 
-RUN apt-get -y update && apt-get install -y fortunes
+MAINTAINER Anselmo Pfeifer: 0.1
 
-CMD /usr/games/fortune -a | cowsay
+ENV DEBIAN_FRONTEND noninteractive
+ENV PACOTES="nginx htop"
+
+RUN apt update && apt -y install $PACOTES
+
+RUN rm -f /etc/nginx/nginx.conf
+RUN rm -f /var/www/html/index.html
+RUN rm -f /etc/nginx/sites-available/default
+
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD index.html /var/www/html/index.html
+COPY default /etc/nginx/sites-available/default
+
+RUN nginx -t
+RUN service nginx start
+RUN service nginx status
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 8080

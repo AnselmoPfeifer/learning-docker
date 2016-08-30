@@ -12,7 +12,7 @@ RUN rm -rf /usr/local/tomcat/work/*
 
 ADD server.xml /usr/local/tomcat/conf/server.xml
 
-ARG WAR_FILE=ROOT.war
+ENV WAR_FILE=ROOT.war
 ADD ${WAR_FILE} /usr/local/tomcat/webapps/${WAR_FILE}
 
 EXPOSE 8080
