@@ -22,3 +22,5 @@ RUN service nginx status
 EXPOSE 80
 EXPOSE 443
 EXPOSE 8080
+
+#CMD ["/usr/sbin/apache2clt", "-D", "FOREGROUND"]

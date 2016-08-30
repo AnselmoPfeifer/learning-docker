@@ -1,0 +1,20 @@
+database:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=123
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/example/dados:/var/lib/mysql
+
+blog:
+  image: wordpress
+  environment:
+    - WORDPRESS_DB_PASSWORD=123
+  links:
+    - database:mysql
+  ports:
+    - 80:80
+
+# Teste de acesso
+# http://localhost
+# Usuario: admin
+# Senha: ih39HM%DwCnoa6IrX5

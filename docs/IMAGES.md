@@ -1,39 +1,36 @@
 # Comando de exemplos para docker images
 
-- docker version
+Images
+Comando de exemplos para docker images
 
-- docker images --help
+docker version
+docker images --help
 
-- docker images 
-    // lista as images
-    
-- docker pull ubuntu:14.04 
-    //faz download da image docker do ubuntu-14.04
-    
-- docker pull mysql 
-    // faz download da image docker para mysql
-    
-- docker rmi <image_name> 
-    // remove a imagem
-    
-- docker rmi $(docker images -qa) 
-    //remove todas as imagens
+docker images
+Para listar as images docker na maquina física 
 
-- docker commit exemplo02 anspfeifer/ubuntu-exemplo:1.0
-    // cria uma nova image com base no container exemplo02
+docker search <name>
+Faz uma pesquisa no repositorio pelo nome da image
+https://hub.docker.com
 
-docker commit teste anspfeifer/nginx:1.0
-docker run nginx anspfeifer/nginx:1.0
-    
-- docker login --username=anspfeifer --email=anspfeifer@gmail.com
-    // fazer login no docker hub
-    
-- docker push anspfeifer/mysql
-    // enviar image para docker hub
-    
-    
-    
-- docker build -t ubuntu:16.10 .
-    
-[Repositorio de images docker](https://hub.docker.com)
+docker pull ubuntu:16.10
+Faz download da image docker do ubuntu-16.10
+
+docker pull mysql
+Faz download da image docker para mysql
+
+docker rmi <image_name>
+Remove a imagem
+
+docker rmi $(docker images -qa)
+Remove todas as imagens
+
+docker commit exemplo02 anspfeifer/mysql:1.0
+Cria uma nova image anspfeifer/mysql:1.0 com base no container exemplo02 com a TAG 1.0
+
+docker login --username=anspfeifer --email=anspfeifer@gmail.com
+Fazer login no docker hub
+  
+docker push anspfeifer/mysql
+Enviar image para docker hub
 
