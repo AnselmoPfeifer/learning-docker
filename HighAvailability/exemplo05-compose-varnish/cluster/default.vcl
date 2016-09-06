@@ -7,8 +7,8 @@ backend tomcat1 {
   .port = "8080";
   .probe = {
                 .url = "/";
-                .interval = 5s;
-                .timeout = 1 s;
+                .interval = 10s;
+                .timeout = 1s;
                 .window = 5;
                 .threshold = 3;
   }
@@ -37,6 +37,7 @@ backend tomcat3 {
                 .threshold = 3;
   }
 }
+
 sub vcl_init {
     new bar = directors.round_robin();
     bar.add_backend(tomcat1);

@@ -10,6 +10,5 @@ RUN rm -rf /usr/local/tomcat/work/*
 ADD server.xml /usr/local/tomcat/conf/server.xml
 
 ADD ROOT.war /usr/local/tomcat/webapps/ROOT.war
-ADD cobranca.war /usr/local/tomcat/webapps/cobranca.war
 
 EXPOSE 8080
