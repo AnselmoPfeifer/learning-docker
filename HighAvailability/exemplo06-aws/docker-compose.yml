@@ -65,16 +65,3 @@ tomcatThree:
     - /home/ubuntu/docker/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
     - /home/ubuntu/docker/cluster/cobranca.war:/usr/local/tomcat/webapps/cobranca.war
 
-mysql:
-  image: mysql:5.6
-  container_name: localhost
-  ports:
-    - 3306:3306
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_ROOT_PASSWORD: knkA9n7YnzvrDLE
-    MYSQL_DATABASE: cobranca
-    MYSQL_USER: cobranca
-    MYSQL_PASSWORD: C41ZBxAmSLhRZliF
-  volumes:
-    - /home/ubuntu/docker/cluster/cobranca.sql:/tmp/cobranca.sql
