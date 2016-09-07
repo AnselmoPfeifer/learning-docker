@@ -10,8 +10,8 @@ loadbalancer:
    - varnish_chache:varnish
   volumes:
    - /home/jenkins/containers/cluster/error.html:/usr/share/nginx/html/error.html
-   - /home/jenkins/containers/cluster/default.conf:/etc/nginx/conf.d/default.conf
-
+   - /home/jenkins/containers/cluster/test_http.conf:/etc/nginx/conf.d/test_http.conf
+   - /home/jenkins/containers/cluster/test.conf:/etc/nginx/conf.d/test.conf
 varnish_chache:
   image: smartive/varnish
   container_name: varnish
