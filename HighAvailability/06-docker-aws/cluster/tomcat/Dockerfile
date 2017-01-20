@@ -11,7 +11,7 @@ ADD stormpath/apiKey.properties /root/.stormpath/apiKey.properties
 ADD tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 ADD server.xml /usr/local/tomcat/conf/server.xml
 
-ADD app/produtos.war /usr/local/tomcat/webapps/produtos.war
+ADD ../../../app/produtos/target/produtos.war /usr/local/tomcat/webapps/produtos.war
 ADD app/cobranca.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080

@@ -6,7 +6,7 @@ cd $DIR/app/produtos/
 
 mvn clean package
 
-cp -r target/produtos.war $DIR/05-docker-compose-varnish/cluster/produtos.war
+cp -r ../app/produtos/target/produtos.war $DIR/05-docker-compose-varnish/cluster/produtos.war
 
 cd $DIR/05-docker-compose-varnish/
 
