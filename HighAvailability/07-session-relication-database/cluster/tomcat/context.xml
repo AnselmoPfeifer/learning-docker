@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <Manager className="org.apache.catalina.session.PersistentManager"
+             distributable="true"  processExpiresFrequency="3" maxIdleBackup="1" >
+        <Store className="org.apache.catalina.session.JDBCStore"
+               driverName="org.postgresql.Driver"
+               connectionURL="jdbc:postgresql://localhost:5432/session"
+               connectionName="postgres" connectionPassword="postgres"
+               sessionAppCol="app_name" sessionDataCol="session_data" sessionIdCol="session_id"
+               sessionLastAccessedCol="last_access" sessionMaxInactiveCol="max_inactive"
+               sessionTable="tomcat_sessions" sessionValidCol="valid_session" />
+    </Manager>
+</Context>
