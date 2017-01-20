@@ -1,0 +1,13 @@
+mysql:
+  image: anspfeifer/mysql:1.2
+  container_name: database
+  ports:
+    - 3306:3306
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_ROOT_PASSWORD: knkA9n7YnzvrDLE
+    MYSQL_DATABASE: cobranca
+    MYSQL_USER: cobranca
+    MYSQL_PASSWORD: C41ZBxAmSLhRZliF
+  volumes:
+    - /tecsinapse/data/mysql:/var/lib/mysql

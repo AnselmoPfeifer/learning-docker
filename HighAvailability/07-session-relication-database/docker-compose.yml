@@ -1,0 +1,19 @@
+tomcatOne:
+  image: anspfeifer/tomcat:1.5
+  container_name: tomcat
+  ports:
+    - 8080:8080
+  links:
+   - SessionPostgres:localhost
+
+SessionPostgres:
+  image: anspfeifer/postgres:1.0
+  container_name: postgres-local
+  ports:
+    - 5555:5432
+
+SessionMySQL:
+  image: anspfeifer/mysql
+  container_name: localhost
+  ports:
+    - 3306:3306

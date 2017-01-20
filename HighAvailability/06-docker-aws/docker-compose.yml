@@ -1,0 +1,63 @@
+loadbalancer:
+  image: nginx
+  container_name: loadbalancer
+  ports:
+   - 80:80
+   - 443:443
+  environment:
+    - NGINX_HOST=dev.anselmopfeifer.com
+  links:
+   - varnish_chache:varnish
+  volumes:
+   - /home/jenkins/containers/cluster/error.html:/usr/share/nginx/html/error.html
+   - /home/jenkins/containers/cluster/test_http.conf:/etc/nginx/conf.d/test_http.conf
+   - /home/jenkins/containers/cluster/test.conf:/etc/nginx/conf.d/test.conf
+
+varnish_chache:
+  image: anspfeifer/varnish:1.0
+  container_name: varnish
+  ports:
+    - 6081:6081
+    - 6082:6082
+  links:
+   - tomcatOne:tomcat1
+   - tomcatTwo:tomcat2
+   - tomcatThree:tomcat3
+
+tomcatOne:
+  image: anspfeifer/tomcat8:1.2
+  container_name: tomcat1
+  ports:
+    - 8081:8080
+  links:
+   - mysql:database
+
+tomcatTwo:
+  image: anspfeifer/tomcat8:1.2
+  container_name: tomcat2
+  ports:
+    - 8082:8080
+  links:
+   - mysql:database
+
+tomcatThree:
+  image: anspfeifer/tomcat8:1.2
+  container_name: tomcat3
+  ports:
+    - 8083:8080
+  links:
+   - mysql:database
+
+mysql:
+  image: anspfeifer/mysql:1.3
+  container_name: database
+  ports:
+    - 3306:3306
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_ROOT_PASSWORD: knkA9n7YnzvrDLE
+    MYSQL_DATABASE: cobranca
+    MYSQL_USER: cobranca
+    MYSQL_PASSWORD: C41ZBxAmSLhRZliF
+  volumes:
+    - /tecsinapse/data/mysql:/var/lib/mysql

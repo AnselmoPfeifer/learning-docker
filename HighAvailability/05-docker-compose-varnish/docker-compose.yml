@@ -1,0 +1,71 @@
+loadbalancer:
+  image: nginx
+  container_name: loadbalancer
+  ports:
+   - 80:80
+   - 443:443
+  environment:
+    - NGINX_HOST=dev.anselmopfeifer.com
+  links:
+   - varnish_chache:varnish
+  volumes:
+   - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/error.html:/usr/share/nginx/html/error.html
+   - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/default.conf:/etc/nginx/conf.d/default.conf
+
+varnish_chache:
+  image: smartive/varnish
+  container_name: varnish
+  ports:
+    - 6081:6081
+  links:
+   - tomcatOne:tomcat1
+   - tomcatTwo:tomcat2
+   - tomcatThree:tomcat3
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/default.vcl:/etc/varnish/default.vcl
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/varnish:/etc/default/varnish
+
+tomcatOne:
+  image: tomcat
+  container_name: tomcat1
+  ports:
+    - 8081:8080
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
+
+tomcatTwo:
+  image: tomcat
+  container_name: tomcat2
+  ports:
+    - 8082:8080
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
+
+tomcatThree:
+  image: tomcat
+  container_name: tomcat3
+  ports:
+    - 8083:8080
+  volumes:
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/server.xml:/usr/local/tomcat/conf/server.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+    - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/produtos.war:/usr/local/tomcat/webapps/produtos.war
+
+
+mysql:
+    image: mysql:5.6
+    container_name: localhost
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: knkA9n7YnzvrDLE
+      MYSQL_DATABASE: cobranca
+      MYSQL_USER: cobranca
+      MYSQL_PASSWORD: C41ZBxAmSLhRZliF
+    volumes:
+      - /Users/anselmo/Documents/Desenvolvimento/workspace/DevOps/learning-docker/HighAvailability/05-docker-compose-varnish/cluster/cobranca.sql:/tmp/cobranca.sql
