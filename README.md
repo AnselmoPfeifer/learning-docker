@@ -1,4 +1,4 @@
-# Repositorio de estudo sobre containers Docker  ßß
+# Repositorio de estudo sobre containers Docker 
 
 - docker version
 - docker --help
