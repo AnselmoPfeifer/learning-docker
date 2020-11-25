@@ -4,11 +4,11 @@ Exemplos do curso DevOps
 Referêcia:
     - https://community.oracle.com/docs/DOC-998210
 
-- docker build -t tomee-war --build-arg WAR_FILE=app_test.war .
+- docker build -t tomee-server --build-arg WAR_FILE=app_test.war .
 
-- docker run --name host1 -p 8080:8080 tomee-war
-- docker run --name host2 -p 8081:8080 tomee-war
-- docker run --name host3 -p 8082:8080 tomee-war
+- docker run --rm --name host1 -p 8080:8080 tomee-server
+- docker run --rm --name host2 -p 8081:8080 tomee-server
+- docker run --rm --name host3 -p 8082:8080 tomee-server
 	
 docker run --name loadbalancer -p 80:80 --link host1:host1 --link host2:host2 --link host3:host3 --env-file ./env.list jasonwyatt/nginx-loadbalancer
 
